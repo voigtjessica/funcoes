@@ -4,7 +4,7 @@
 
 como_data <- function(x) {
   
-  require(dplyr)
+  stopifnot(require(dplyr))
   x <- gsub(" .*", "", x)
   y <- gsub(".*/", "", x)
   x <- if_else((nchar(y)==4), as.Date(x, format="%d/%m/%Y"),
