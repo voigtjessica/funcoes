@@ -1,0 +1,20 @@
+# Função como_data serve para converter strings em data de acordo com os padrões brasileiros.
+# Ela retira registros de horário e converte tanto o ano com 2 caracteres quanto o ano com 4 caracteres
+# Separador padrão é / e a ordem é dia / mês / ano
+
+como_data <- function(x) {
+  
+  require(dplyr)
+  x <- gsub(" .*", "", x)
+  y <- gsub(".*/", "", x)
+  x <- if_else((nchar(y)==4), as.Date(x, format="%d/%m/%Y"),
+              as.Date(x, format="%d/%m/%y"))
+
+}
+
+# Exemplo:
+
+v <- c("15/03/1988", "15/03/88", "1/3/1988", "01/03/88 00:00", "1/3/1988 01:02:03")
+
+x<- como_data(v)
+x
