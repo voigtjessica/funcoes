@@ -1,0 +1,15 @@
+#Função perc 
+#Objetivo: transformar qualquer número ou resultado de equação em um vetor de texto que indica o percentual.
+
+perc <- function(x) { 
+  paste0(round(x,2)*100, "%")
+}
+
+#Exemplo:
+
+v <- c(0.4322 , 0.2345, 0.85454546565)
+perc(v)
+# [1] "43%" "23%" "85%"
+
+perc((0.5345345+0.111)/7)
+#[1] "9%"
