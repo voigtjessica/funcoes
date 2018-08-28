@@ -1,3 +1,4 @@
+
 tira_tudo <- function(x){
   stopifnot(require(stringi))
   
@@ -7,7 +8,21 @@ tira_tudo <- function(x){
   
 }
 
-#Exemplo:
+#Exemplo 1:
 
 tira_tudo("AáXXãçÃÊ")
 # [1] "aaxxacae"
+
+#Exemplo 2:
+
+x <- data.frame(a = c("áÁÃ", "çÂó"),
+                   b = c(1,2))
+x
+
+x %>% 
+  mutate(y = tira_tudo(a))
+
+#[1] "aaa" "cao"
+#    a b   y
+#1 áÁÃ 1 aaa
+#2 çÂó 2 cao
