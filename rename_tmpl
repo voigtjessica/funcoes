@@ -2,35 +2,17 @@
 # Serve para renomear um df de acordo com os nomes de um template que eu escolha
 
 # importante: colunas devem estar na mesma posição que o item do vetor que eu quero que remoneie o meu df.
-#             caso o lenght do df seja maior que o lenght do vetor, as colunas em posição > que o lenght do vetor não serão renomeadas.
-
 
 ###############################################
 
-tmpl_fb <- function(df, nomes_que_eu_quero){
 
-  nomes_tbl <- names(df)
+troca_nome_colunas <- function(df, vec_nomes) {
   
-  for(i in 1:length(nomes_que_eu_quero)){
-    if(!grepl(nomes_que_eu_quero[i], nomes_tbl[i])) {
-      colnames(x)[i] <- nomes_que_eu_quero[i]
-    }
-  }
-  return(x)
+  aux <- names(df)
+  match_result <- match(aux, vec_nomes)
+  aux[which(is.na(match_result))] <- vec_nomes[is.na(match(vec_nomes, aux))]
+  names(df) <- aux
+  return(df)
+  
 }
 
-###############################################
-
-# Exemplo:
-
-df1 <- data.frame(a = c(1:20),
-                  b = c(22:41),
-                  c = c(1:20),
-                  d = c(1:20))
-
-nomes <- c("zzz", "zzy", "c", "d")
-
-df2 <- tmpl_fb(df1, nomes)
-names(df2)
-
-#[1] "zzz" "zzy" "c"   "d"  
