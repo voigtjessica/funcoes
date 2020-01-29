@@ -1,0 +1,18 @@
+fix_nomes <- function(x){
+  stopifnot(require(stringr))
+  
+  x <- str_to_title(x)
+  x <- ifelse(grepl("De", x), gsub( "\\ De", " de", x ), x)
+  x <- ifelse(grepl("Da", x), gsub( "\\ Da", " da", x ), x)
+  x <- ifelse(grepl("Do", x), gsub( "\\ Do", " do", x ), x)
+  x <- ifelse(grepl("Dos", x), gsub( "\\ Dos", " dos", x ), x)
+  
+}
+
+#Exemplo:
+
+a <- c("MARIA DA SILVA", "maria da silva")
+a <- fix_nomes(a)
+a
+
+# [1] "Maria da Silva" "Maria da Silva"
